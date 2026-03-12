@@ -1,0 +1,139 @@
+/* システム設定編集 (Configs Edit) */
+/* ▼修正前 260220 各セレクタに .p-configs-edit を個別記述していた
+.p-configs-edit .page-container { ... }
+.p-configs-edit .page-header { ... }
+... (多数)
+▲修正前 260220 */
+/* ▼修正後 260220 ネスト構文にまとめて統一 */
+.p-configs-edit {
+    /* ▼修正 260225 余計なスクロールを防ぐため、高さを固定せず中身に合わせる */
+    height: auto !important;
+    overflow: visible !important;
+    /* ▲修正 260225 */
+    position: relative;
+    /* 子要素の配置基準 */
+    isolation: isolate;
+    /* z-index: -1 を確実に機能させる */
+
+    /* ▼修正 260220 コンパクト化調整（1.25倍拡大）：元ソース */
+    /* .page-container { @apply p-4 pb-40 max-w-4xl mx-auto text-sm; } */
+    @apply bg-[#fafdf5];
+
+    .page-container {
+        @apply p-4 pb-10 max-w-3xl mx-auto text-base;
+    }
+
+    /* ▲修正 260220 */
+
+    .page-header {
+        /* ▼修正 260220 header周りの余白短縮：元ソース */
+        /* @apply flex justify-between items-center mb-8 pb-4 border-b border-gray-200; */
+        @apply flex justify-between items-center mb-4 pb-2 border-b border-gray-200;
+    }
+
+    .page-title {
+        @apply font-bold text-gray-900 m-0;
+    }
+
+    .link-back {
+        @apply inline-flex items-center p-2 bg-blue-600 rounded-lg no-underline text-white hover:bg-blue-700;
+    }
+
+    .section-frame {
+        /* ▼修正 260220 セクション余白短縮：元ソース */
+        /* @apply border border-gray-400 p-5 mb-8; */
+        @apply border border-gray-400 p-3 mb-4 rounded-lg;
+    }
+
+    .section-title {
+        @apply px-2 font-bold bg-white;
+    }
+
+    .form-group-container {
+        /* ▼修正 260220 項目間隔短縮：元ソース */
+        /* @apply grid gap-4; */
+        @apply grid gap-2;
+    }
+
+    .form-group {
+        @apply flex flex-col gap-1;
+    }
+
+    .form-label {
+        @apply font-bold;
+    }
+
+    .input-field {
+        /* ▼修正 260220 フィールド高抑制：元ソース */
+        /* @apply w-full p-2 border border-gray-400 rounded-none; */
+        @apply w-full p-1 border border-gray-400 rounded-lg;
+    }
+
+    .btn-submit {
+        @apply w-full inline-flex justify-center items-center px-4 py-2 bg-blue-600 text-base cursor-pointer hover:bg-blue-700 text-white rounded-lg;
+    }
+
+    .error-msg {
+        @apply text-red-500 text-sm mt-1;
+    }
+
+    /* フィールドセットの外観調整 */
+    fieldset {
+        @apply w-full min-w-0;
+    }
+
+    /* 2カラムレイアウト (lg画面以上) */
+    @media (min-width: 1024px) {
+        .form-group-container {
+            @apply grid-cols-2;
+        }
+    }
+
+    /* ▼【★ここを書き換える：画像・位置・サイズを自由に設定してください】 */
+    /* 他の画面やフッターの設定と混ざらないよう、必ず親クラス（例：.p-configs-edit）の中に書いてください */
+    .p-image-area {
+        position: absolute;
+        /* 絶対配置 */
+        z-index: -1;
+        /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+        pointer-events: none;
+        /* 画像がクリックの邪魔をしないようにする */
+        mix-blend-mode: multiply;
+        /* 画像の白い背景を透明化して馴染ませる */
+
+        /* 1. 画像： public/images/page/ の中にある画像の名前を書いてください */
+        /* 例: url('../../../../public/images/page/book_stack_outline.png') */
+        background-image: url('');
+
+        /* 2. 位置：画面の端（右下の角）からの距離を指定します（0に近づけるほど端に寄ります） */
+        bottom: 20px;
+        /* 下からの距離 */
+        right: 20px;
+        /* 右からの距離 */
+
+        /* 3. サイズ：画像の大きさを指定します */
+        width: 300px;
+        /* 横幅 */
+        height: 150px;
+        /* 高さ */
+
+        /* 4. 濃さ：0.1（すごく薄い）〜 1.0（くっきり）の間で調整してください */
+        opacity: 1.0;
+
+        /* ▲【★書き換えエリアはここまで】 */
+
+        /* 位置のリセット：フッターなどの他画面の設定に邪魔されないための自動設定 */
+        left: auto;
+        margin: 0;
+
+        background-size: contain;
+        /* 画像全体を収める */
+        background-position: center;
+        /* 枠のど真ん中に表示 */
+        background-repeat: no-repeat;
+    }
+
+    /* ▲追加 260221 */
+}
+
+/* ▲修正後 260220 */

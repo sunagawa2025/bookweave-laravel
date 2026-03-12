@@ -1,0 +1,172 @@
+:root {
+    --lib-bg: #fdfaf5;
+    --lib-wood: #5d4037;
+    --lib-ink: #2c3e50;
+    --lib-accent: #a68b5b;
+    --lib-border: #dcd3c1;
+}
+
+/* ▼修正前
+.top-container {
+    padding: 40px 20px;
+    background-color: var(--lib-bg);
+    min-height: 100vh;
+    color: var(--lib-ink);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+▲修正前 */
+
+/* ▼修正後 260225 フッター被り・スクロール不具合対策 */
+.top-container {
+    padding: 20px 20px 40px;
+    background-color: var(--lib-bg);
+    height: calc(100vh - 65px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    color: var(--lib-ink);
+    position: relative;
+    isolation: isolate;
+}
+
+/* ▲修正後 260225 */
+
+.top-title {
+    text-align: center;
+    margin-bottom: 10px;
+    border-bottom: 3px double var(--lib-accent);
+    display: inline-block;
+    padding-bottom: 4px;
+    letter-spacing: 0.15em;
+    color: #2c3e50;
+    font-weight: 600;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.05);
+    width: auto;
+    min-width: 200px;
+}
+
+/* 利用者メニュー */
+.user-menu-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    /* ▼変更 30px -> 15px */
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.user-menu-link {
+    width: calc(50% - 15px);
+    flex: 0 0 auto;
+    min-width: 260px;
+    padding: 20px 15px;
+    /* ▼変更 60px 30px -> 20px 15px (高さを大幅に圧縮) */
+
+    /* 見た目の装飾 */
+    background-color: #fff;
+    border: 1px solid var(--lib-border);
+    border-radius: 15px;
+    /* ほどよい丸み */
+    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.05);
+    /* 軽い影 */
+
+    text-align: center;
+    text-decoration: none;
+    color: var(--lib-wood);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.user-menu-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    background-color: var(--lib-accent);
+}
+
+.user-menu-link:hover {
+    background-color: #fcf9f2;
+    border-color: var(--lib-accent);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(93, 64, 55, 0.15);
+}
+
+.user-menu-text {
+    font-size: 1.2rem;
+    /* ▼変更 1.4rem -> 1.2rem (枠に合わせて微調整) */
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+}
+
+/* ダークモード */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --lib-bg: #1a1614;
+        --lib-ink: #e0d8c3;
+        --lib-wood: #d2b48c;
+        --lib-border: #3e3530;
+    }
+
+    .user-menu-link {
+        background-color: #25201d;
+    }
+}
+
+@media (max-width: 600px) {
+    .user-menu-link {
+        width: 100%;
+    }
+}
+
+/* ▼ ワンポイント画像（背景・透かし）の設定：260221ベース型枠（最新版） */
+/* 他の画面やフッターの設定と混ざらないよう、必ず親クラス（例：.top-container）の中に書いてください */
+.top-container .p-image-area {
+    position: absolute;
+    /* 絶対配置 */
+    z-index: -1;
+    /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+    pointer-events: none;
+    /* 画像がクリックの邪魔をしないようにする */
+    mix-blend-mode: multiply;
+    /* 白い背景を完璧に透過させる */
+
+    /* ▼【★ここを書き換える：画像・位置・サイズを自由に設定してください】 */
+
+    /* 1. 画像：使いたい画像の名前を最後に書いてください */
+    background-image: url("../../../../public/images/page/book_watercolor_final.png");
+
+    /* 2. 位置：右下からの距離を指定します（0にすると端っこに付きます） */
+    bottom: 40px;
+    /* 下からの距離 */
+    right: 20px;
+    /* 右からの距離 */
+
+    /* 3. サイズ：画像の大きさを指定します */
+    width: 350px;
+    /* 横幅 */
+    height: 350px;
+    /* 高さ */
+
+    /* 4. 濃さ：0.1（すごく薄い）〜 1.0（くっきり）の間で調整してください */
+    opacity: 0.6;
+
+    /* ▲【★書き換えエリアはここまで】 */
+
+    /* 位置のリセット：フッターなどの他設定による中央寄せを確実に解除する（自動設定） */
+    left: auto;
+    margin: 0;
+
+    background-size: contain;
+    /* 画像全体を収める */
+    background-position: right bottom;
+    /* 右下基準 */
+    background-repeat: no-repeat;
+}
+
+/* ▲追加 260221 */

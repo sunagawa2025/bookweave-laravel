@@ -1,0 +1,139 @@
+.p-loan-status {
+    /* 表示領域からフッター高を引いて計算(強制適用) */
+    height: calc(100vh - 65px) !important;
+    overflow-y: auto !important;
+
+    position: relative;
+    /* 子要素の配置基準 */
+    isolation: isolate;
+    /* z-index: -1 を確実に機能させる */
+
+    .bg-page {
+        @apply bg-[#fafdf5] min-h-screen;
+    }
+
+    /*▼f/su-1　2/21マージコンフリクト*/
+    /*.bg-page { @apply bg-sky-100 min-h-screen; }*/
+    /*▲f/su-1*/
+    .page-container {
+        @apply p-10 text-gray-900 min-h-screen;
+    }
+
+    .page-header {
+        @apply mb-5 flex items-center justify-between;
+    }
+
+    .page-title {
+        @apply m-0 text-2xl text-gray-900 font-bold text-center mb-5;
+    }
+
+    .content-area {
+        @apply bg-white overflow-hidden shadow-sm sm:rounded-lg p-4 text-gray-900;
+        /* p-6 から p-4 に縮小 */
+    }
+
+    .filter-area {
+        @apply !mb-2 p-1 rounded-lg flex items-center gap-6;
+        /* 余白を微調整し、要素間の間隔を広げる */
+        flex-wrap: nowrap !important;
+    }
+
+    .filter-group {
+        @apply flex flex-row items-center gap-2;
+        /* ラベルと入力を横並びに変更 */
+    }
+
+    .filter-label {
+        @apply text-sm font-bold text-gray-700 !mb-0 mr-0 whitespace-nowrap;
+    }
+
+    .filter-input {
+        @apply rounded-md shadow-sm p-1 text-sm bg-white;
+        border: 1px solid #111827 !important;
+        /* 強制的に黒系(gray-900相当)の枠線を適用 */
+    }
+
+    .table-wrapper {
+        @apply w-full overflow-x-auto;
+    }
+
+    .data-table {
+        @apply !mt-2 w-full border-collapse border border-gray-300;
+    }
+
+    .data-table thead tr {
+        @apply bg-blue-50;
+    }
+
+    .data-table th,
+    .data-table td {
+        @apply border border-gray-400 p-2 text-gray-900;
+    }
+
+    .data-table th {
+        @apply text-left bg-gray-300;
+    }
+
+    /* 検索可能な項目（管理IDなど）のフォント色を青に */
+    .data-table th.searchable-th {
+        color: #2563eb !important;
+    }
+
+    .data-table td {
+        @apply text-left bg-white;
+    }
+
+    .data-table tr:hover {
+        @apply bg-gray-50;
+    }
+
+    .alert-success {
+        @apply bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4;
+    }
+
+    /* ▼【★ここを書き換える：画像・位置・サイズを自由に設定してください】 */
+    /* 他の画面やフッターの設定と混ざらないよう、必ず親クラス（例：.p-loan-status）の中に書いてください */
+    .p-image-area {
+        position: absolute;
+        /* 絶対配置 */
+        z-index: -1;
+        /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+        pointer-events: none;
+        /* 画像がクリックの邪魔をしないようにする */
+        mix-blend-mode: multiply;
+        /* 画像の白い背景を透明化して馴染ませる */
+
+        /* 1. 画像： public/images/page/ の中にある画像の名前を書いてください */
+        /* 例: url('../../../../public/images/page/book_stack_outline.png') */
+        background-image: url("");
+
+        /* 2. 位置：画面の端（右下の角）からの距離を指定します（0に近づけるほど端に寄ります） */
+        bottom: 20px;
+        /* 下からの距離 */
+        right: 20px;
+        /* 右からの距離 */
+
+        /* 3. サイズ：画像の大きさを指定します */
+        width: 300px;
+        /* 横幅 */
+        height: 150px;
+        /* 高さ */
+
+        /* 4. 濃さ：0.1（すごく薄い）〜 1.0（くっきり）の間で調整してください */
+        opacity: 1;
+
+        /* ▲【★書き換えエリアはここまで】 */
+
+        /* 位置のリセット：フッターなどの他画面の設定に邪魔されないための自動設定 */
+        left: auto;
+        margin: 0;
+
+        background-size: contain;
+        /* 画像全体を収める */
+        background-position: center;
+        /* 枠のど真ん中に表示 */
+        background-repeat: no-repeat;
+    }
+
+    /* ▲追加 260221 */
+}

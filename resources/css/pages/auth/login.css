@@ -1,0 +1,32 @@
+.p-login {
+    .page-container {
+        @apply min-h-screen flex flex-col justify-center items-center;
+    }
+
+    /* ▼追加 260220 ロゴとタイトルのレイアウト */
+    .page-header-container {
+        @apply flex flex-col items-center gap-1 mb-4;
+    }
+
+    .logo-icon-wrapper {
+        @apply flex h-12 w-12 items-center justify-center rounded-md bg-zinc-900 text-white shadow-sm;
+    }
+
+    .page-title {
+        @apply text-2xl font-bold;
+    }
+
+    /* ▲追加 260220 */
+
+    .action-container {
+        @apply mt-4;
+    }
+
+    /* ▼修正 260220 ボタンを青色・角丸に変更：元ソース */
+    /* .btn-login-entry { @apply inline-block p-[10px_20px] border border-black no-underline text-inherit; } */
+    .btn-login-entry {
+        @apply inline-block px-8 py-3 bg-blue-600 text-white rounded-lg font-medium no-underline shadow-sm transition-colors hover:bg-blue-700;
+    }
+
+    /* ▲修正 260220 */
+}

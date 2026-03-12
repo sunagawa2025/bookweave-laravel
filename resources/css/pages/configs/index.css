@@ -1,0 +1,133 @@
+/* システム共通設定一覧 (Configs Index) */
+.p-configs-index {
+    /* ▼修正 260225 余計なスクロールを防ぐため、高さを固定せず中身に合わせる */
+    height: auto !important;
+    overflow: visible !important;
+    /* ▲修正 260225 */
+    position: relative;
+    /* 子要素の配置基準 */
+    isolation: isolate;
+    /* z-index: -1 を確実に機能させる */
+
+    /* 元ソース: .bg-page { @apply bg-[#fafdf5] min-h-screen; } */
+    @apply bg-[#fafdf5];
+
+    .bg-page {
+        @apply w-full;
+    }
+
+    .left {
+        @apply w-1/10;
+    }
+
+    /* ▼修正 260220 コンパクト化調整（1.25倍拡大）：元ソース */
+    /* .page-container { @apply p-6 pb-40 max-w-4xl mx-auto text-gray-900 text-sm; } */
+    .page-container {
+        @apply p-6 pb-10 max-w-6xl mx-auto text-gray-900 text-base;
+    }
+
+    /* ▲修正 260220 */
+
+    .page-header {
+        @apply w-4/5 mx-auto flex justify-between items-center mb-4 pb-4;
+    }
+
+    .page-title {
+        @apply m-0 text-2xl font-bold text-gray-900 text-center mb-5;
+    }
+
+    .btn-simple {
+        @apply inline-flex items-center px-4 py-2 rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-sm transition-colors;
+    }
+
+    /* ▼修正 260220 セクション間短縮＆全幅（コンテナ側で幅制限）：元ソース */
+    /* .config-sections { @apply space-y-6 w-3/4;} */
+    .config-sections {
+        @apply space-y-6 w-full;
+    }
+
+    /* ▲修正 260220 */
+
+    .section-margin {
+        @apply mb-4;
+        /* space-y で制御するため */
+    }
+
+    /* ▼修正 260220 見出し下の余白削減：元ソース */
+    /* h3 { @apply text-lg font-semibold text-gray-900 mb-4 border-l-4 border-blue-600 pl-3;} */
+    h3 {
+        @apply text-lg font-semibold text-gray-900 mb-1 border-l-4 border-blue-600 pl-3;
+    }
+
+    /* ▲修正 260220 */
+    .section-margin {
+        @apply w-4/5 mx-auto mb-4;
+    }
+
+    .data-table {
+        @apply w-full border-collapse bg-white shadow-sm overflow-hidden mx-auto;
+    }
+
+    .data-table thead tr {
+        @apply bg-gray-300 border border-gray-400;
+    }
+
+    .data-table th,
+    .data-table td {
+        @apply p-4 border border-gray-400 !text-left;
+    }
+
+    .data-table th {
+        @apply px-4 py-1 font-medium text-gray-900 w-1/4 bg-gray-300 text-center border border-gray-400;
+    }
+
+    .data-table td {
+        @apply px-4 py-1 text-left border border-gray-400 text-gray-900;
+    }
+
+    /* ▼【★ここを書き換える：画像・位置・サイズを自由に設定してください】 */
+    /* 他の画面やフッターの設定と混ざらないよう、必ず親クラス（例：.p-configs-index）の中に書いてください */
+    .p-image-area {
+        position: absolute;
+        /* 絶対配置 */
+        z-index: -1;
+        /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+        pointer-events: none;
+        /* 画像がクリックの邪魔をしないようにする */
+        mix-blend-mode: multiply;
+        /* 画像の白い背景を透明化して馴染ませる */
+
+        /* 1. 画像： public/images/page/ の中にある画像の名前を書いてください */
+        /* 例: url('../../../../public/images/page/book_stack_outline.png') */
+        background-image: url('');
+
+        /* 2. 位置：画面の端（右下の角）からの距離を指定します（0に近づけるほど端に寄ります） */
+        bottom: 20px;
+        /* 下からの距離 */
+        right: 20px;
+        /* 右からの距離 */
+
+        /* 3. サイズ：画像の大きさを指定します */
+        width: 300px;
+        /* 横幅 */
+        height: 150px;
+        /* 高さ */
+
+        /* 4. 濃さ：0.1（すごく薄い）〜 1.0（くっきり）の間で調整してください */
+        opacity: 1.0;
+
+        /* ▲【★書き換えエリアはここまで】 */
+
+        /* 位置のリセット：フッターなどの他画面の設定に邪魔されないための自動設定 */
+        left: auto;
+        margin: 0;
+
+        background-size: contain;
+        /* 画像全体を収める */
+        background-position: center;
+        /* 枠のど真ん中に表示 */
+        background-repeat: no-repeat;
+    }
+
+    /* ▲追加 260221 */
+}

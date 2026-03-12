@@ -1,0 +1,163 @@
+.p-evaluations-index {
+    /* ▼修正 260225 他の画面と同様、表示領域からフッター高を引いて計算(強制適用) */
+    height: calc(100vh - 65px) !important;
+    overflow-y: auto !important;
+    /* ▲修正 260225 */
+    @apply py-12;
+    position: relative;
+    /* 子要素の配置基準 */
+    isolation: isolate;
+    /* z-index: -1 を確実に機能させる */
+
+    /* 検索バー設定 */
+    .search-bar {
+        @apply mb-6 flex gap-2;
+    }
+
+    .search-input {
+        @apply flex-1 p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none;
+    }
+
+    .search-select {
+        @apply p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none;
+    }
+
+    .rating-select {
+        @apply font-bold;
+    }
+
+    .btn-search {
+        @apply px-6 py-2 border border-gray-300 dark:border-gray-600 rounded transition duration-150 shadow-sm;
+    }
+
+    /* 一覧表示ブロックのwrapper */
+    .evaluation-wrapper {
+        @apply max-w-7xl mx-auto sm:px-6 lg:px-8;
+    }
+
+    /* ▼修正 20260220 タイトルを中央寄せに変更：元ソース */
+    /* .page-title { @apply text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200; } */
+    .page-title {
+        @apply m-0 text-2xl text-gray-900 font-bold text-center mb-6;
+    }
+
+    /* ▲修正 20260220 */
+
+    /* コンテンツカード */
+    .content-box {
+        @apply bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg;
+
+        .content-body {
+            @apply p-6 text-gray-900 dark:text-gray-100;
+        }
+    }
+
+    /* テーブルレイアウト */
+    .evaluation-table {
+        @apply w-full text-center border-collapse;
+
+        thead tr {
+            @apply bg-blue-50;
+        }
+
+        th {
+            @apply p-2 bg-gray-300 border border-gray-400 text-gray-900 font-bold whitespace-nowrap text-center;
+
+            &.searchable-th {
+                color: #2563eb !important;
+            }
+        }
+
+        /* データの星の色を確実に黄色（イエロー500相当）にする */
+        td.col-rating {
+            color: #eab308 !important;
+        }
+
+        td {
+            @apply p-2 border border-gray-400 text-base text-gray-900 align-top text-center bg-white;
+        }
+
+        tr:hover td {
+            @apply bg-gray-50 dark:bg-gray-700 transition duration-150;
+        }
+    }
+
+    /* 列幅の調整 */
+    .col-title {
+        @apply font-bold w-1/4;
+    }
+
+    .col-user {
+        @apply text-gray-600 dark:text-gray-300 w-1/6;
+    }
+
+    .col-rating {
+        @apply text-base w-1/12 whitespace-nowrap;
+    }
+
+    .col-comment {
+        @apply text-gray-700 dark:text-gray-300 truncate max-w-xs whitespace-normal break-words;
+    }
+
+    .col-date {
+        @apply text-gray-500 dark:text-gray-400 text-xs w-1/12 whitespace-nowrap;
+    }
+
+    .col-title,
+    .col-user,
+    .col-comment {
+        @apply !text-left;
+    }
+
+    .pagination-wrapper {
+        @apply mt-6;
+    }
+
+    .empty-message {
+        @apply text-center text-gray-500 py-10;
+    }
+
+    /* ▼【★ここを書き換える：画像・位置・サイズを自由に設定してください】 */
+    /* 他の画面やフッターの設定と混ざらないよう、必ず親クラス（例：.p-evaluations-index）の中に書いてください */
+    .p-image-area {
+        position: absolute;
+        /* 絶対配置 */
+        z-index: -1;
+        /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+        pointer-events: none;
+        /* 画像がクリックの邪魔をしないようにする */
+        mix-blend-mode: multiply;
+        /* 画像の白い背景を透明化して馴染ませる */
+
+        /* 1. 画像： public/images/page/ の中にある画像の名前を書いてください */
+        /* 例: url('../../../../public/images/page/book_stack_outline.png') */
+        background-image: url('');
+
+        /* 2. 位置：画面の端（右下の角）からの距離を指定します（0に近づけるほど端に寄ります） */
+        bottom: 20px;
+        /* 下からの距離 */
+        right: 20px;
+        /* 右からの距離 */
+
+        /* 3. サイズ：画像の大きさを指定します */
+        width: 300px;
+        /* 横幅 */
+        height: 150px;
+        /* 高さ */
+
+        /* 4. 濃さ：0.1（すごく薄い）〜 1.0（くっきり）の間で調整してください */
+        opacity: 1.0;
+
+        /* ▲【★書き換えエリアはここまで】 */
+
+        /* 位置のリセット：フッターなどの他画面の設定に邪魔されないための自動設定 */
+        left: auto;
+        margin: 0;
+
+        background-size: contain;
+        /* 画像全体を収める */
+        background-position: center;
+        /* 枠のど真ん中に表示 */
+        background-repeat: no-repeat;
+    }
+}

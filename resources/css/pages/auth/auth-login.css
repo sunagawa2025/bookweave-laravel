@@ -1,0 +1,48 @@
+.p-auth-login {
+    .auth-card {
+        @apply flex flex-col gap-6;
+    }
+
+    /* ▼追加 260220 ロゴとタイトルのレイアウト */
+    .auth-header-container {
+        @apply flex flex-col items-center gap-1 mb-6;
+    }
+
+    .logo-icon-wrapper {
+        @apply flex items-center justify-center mb-4;
+    }
+
+    .logo-icon {
+        @apply h-20 w-auto;
+    }
+
+    /* ▲追加 260220 */
+
+    .status-message {
+        @apply text-center;
+    }
+
+    .login-form {
+        @apply flex flex-col gap-6;
+    }
+
+    .password-wrapper {
+        @apply relative;
+    }
+
+    .forgot-password-link {
+        @apply absolute top-0 text-sm end-0;
+    }
+
+    .action-footer {
+        @apply flex items-center justify-end;
+    }
+
+    /* ▼修正 260220 ボタンを青色に変更：元ソース */
+    /* .btn-login { @apply w-full; } */
+    .btn-login {
+        @apply w-full bg-blue-600 text-white hover:bg-blue-700 transition-colors;
+    }
+
+    /* ▲修正 260220 */
+}

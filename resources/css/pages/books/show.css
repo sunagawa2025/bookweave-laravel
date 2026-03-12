@@ -1,0 +1,247 @@
+/* ▼修正 260220 コンフリクト解消と統合 */
+.p-books-show {
+    position: relative;
+    /* 子要素の配置基準 */
+    isolation: isolate;
+    /* z-index: -1 を確実に機能させる */
+
+    /* ▼追加 260220 sky-100背景をpage-container外にも適用（flux:mainのpaddingで白く見える対策） */
+    background-color: rgb(227, 236, 241);
+    /* sky-100 */
+    /* ▼修正 260225 ランキング画面と同じ計算式と強制適用(!important)で表示領域を確保 */
+    height: calc(100vh - 120px) !important;
+    overflow-y: auto !important;
+    /* ▲修正 260225 */
+
+    /* ▼背景色のみ HEAD (水色) を採用 */
+    .page-container {
+        /* ▼修正 260224 フッター被り対策で下部パディング追加 */
+        @apply px-10 pt-10 pb-20 bg-[#fafdf5] text-gray-900 grid gap-6;
+        grid-template-columns: 3fr 7fr;
+        grid-template-areas:
+            /* ヘッダー */
+            "title  title"
+            /* 2段目: 左=詳細 / 右=書影 */
+            "image  detail"
+            /* 3段目: 左=フォーム(nav含む) / 右=一覧 */
+            "bottom bottom";
+    }
+
+    /* モバイル対応 */
+    @media (max-width: 768px) {
+        .page-container {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "title"
+                "detail"
+                "image"
+                "form"
+                "list";
+        }
+    }
+
+    .page-header {
+        grid-area: title;
+        @apply mt-10 m-0 text-2xl text-gray-900 font-bold text-center;
+    }
+
+    .page-sub {
+        @apply text-sm text-gray-500;
+    }
+
+    .detail-container {
+        grid-area: detail;
+        @apply gap-2 bg-white p-6 rounded-lg shadow-sm w-full;
+    }
+
+    .detail-row {
+        @apply flex border-b border-gray-100 py-2;
+    }
+
+    .detail-label {
+        @apply w-40 font-bold;
+    }
+
+    .detail-value {
+        @apply flex-1;
+    }
+
+    .form-area {
+        @apply h-78 gap-2 bg-white p-6 rounded-lg shadow-sm w-full;
+    }
+
+    .form-group {
+        @apply mb-4;
+    }
+
+    .input-field {
+        @apply flex-1 p-2 rounded-lg border border-gray-400 bg-white w-full;
+    }
+
+    .btn-check {
+        @apply py-2 px-8 bg-blue-600 text-white cursor-pointer no-underline text-inherit inline-block rounded-lg hover:bg-blue-700;
+    }
+
+    .btn-container {
+        @apply text-right;
+    }
+
+    /* 右側エリア用 */
+    .image-area {
+        grid-area: image;
+        @apply h-64 bg-white p-2 rounded-lg flex items-center justify-center text-gray-400;
+    }
+
+    /* 検索バー用 */
+    .search-bar {
+        @apply mb-4 flex gap-2;
+    }
+
+    .search-input,
+    .search-select {
+        @apply p-2 rounded-lg border border-gray-400 bg-white focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400;
+    }
+
+    .evaluation-table {
+        @apply w-full border-collapse mt-4 border border-gray-400;
+
+        thead tr {
+            @apply bg-blue-50;
+        }
+
+        th,
+        td {
+            @apply border border-gray-400 p-2 text-gray-900;
+        }
+
+        th {
+            @apply bg-gray-300 font-bold text-center;
+
+            &.searchable-th {
+                color: #2563eb !important;
+            }
+        }
+
+        td {
+            @apply bg-white text-left;
+        }
+
+        .col-rating {
+            @apply whitespace-nowrap;
+
+            .star-rating {
+                color: #fac03d !important;
+                @apply text-lg tracking-tighter;
+            }
+        }
+    }
+
+    .col-comment {
+        @apply break-words whitespace-normal;
+    }
+
+    .review-list {
+        @apply bg-white p-6 rounded-lg;
+    }
+
+    .form-area,
+    .review-list {
+        min-width: 0;
+    }
+
+    .bottom-row {
+        grid-area: bottom;
+        @apply grid gap-6;
+        grid-template-columns: 4fr 6fr;
+    }
+
+    /* nav-buttonsはformエリア内に移動するためgrid-area削除 */
+    .action-bar {
+        @apply m-4;
+    }
+
+    .btn-simple {
+        @apply p-2 bg-blue-600 text-white cursor-pointer no-underline inline-block rounded-lg hover:bg-blue-700;
+    }
+
+    .back-link {
+        @apply px-6 bg-emerald-700 hover:bg-emerald-800;
+        /* 移動系：深緑色 */
+    }
+
+    .admin-link {
+        @apply px-6 bg-violet-600 hover:bg-violet-700;
+        /* 管理者系：紫色 */
+    }
+
+    .btn-delete {
+        @apply inline-block p-2 border-red-400 bg-red-600 text-white rounded-lg hover:bg-red-700;
+    }
+
+    .section-title {
+        @apply font-bold border-b mb-2 pb-1;
+    }
+
+    .status-message {
+        @apply mb-4 text-blue-600;
+    }
+
+    .error-message {
+        @apply text-red-500 text-sm mt-1;
+    }
+
+    .rating-select {
+        color: #fac03d !important;
+        @apply font-bold;
+    }
+
+    .input-small {
+        @apply w-auto;
+        color: #fac03d !important;
+        font-weight: bold;
+    }
+
+    /* ▼【★ここを書き換える：画像・位置・サイズを自由に設定してください】 */
+    /* 他の画面やフッターの設定と混ざらないよう、必ず親クラス（例：.p-books-show）の中に書いてください */
+    .p-image-area {
+        position: absolute;
+        /* 絶対配置 */
+        z-index: -1;
+        /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+        pointer-events: none;
+        /* 画像がクリックの邪魔をしないようにする */
+        mix-blend-mode: multiply;
+        /* 画像の白い背景を透明化して馴染ませる */
+
+        /* 1. 画像： public/images/page/ の中にある画像の名前を書いてください */
+        /* 例: url('../../../../public/images/page/book_show_bg.png') */
+        background-image: url('');
+
+        /* 2. 位置：画面の端（右下の角）からの距離を指定します（0に近づけるほど端に寄ります） */
+        bottom: 20px;
+        /* 下からの距離 */
+        right: 20px;
+        /* 右からの距離 */
+
+        /* 3. サイズ：画像の大きさを指定します */
+        width: 200px;
+        /* 横幅 */
+        height: 100px;
+        /* 高さ */
+
+        /* 4. 濃さ：0.1（すごく薄い）〜 1.0（くっきり）の間で調整してください */
+        opacity: 1.0;
+
+        /* ▲【★書き換えエリアはここまで】 */
+
+        /* 位置のリセット：フッターなどの他画面の設定に邪魔されないための自動設定 */
+        left: auto;
+        margin: 0;
+
+        background-size: contain;
+        /* 画像全体を収める */
+        background-position: center;
+        /* 枠のど真ん中に表示 */
+        background-repeat: no-repeat;
+    }
+}

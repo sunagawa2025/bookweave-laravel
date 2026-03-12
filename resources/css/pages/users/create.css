@@ -1,0 +1,97 @@
+.p-users-create {
+    position: relative;
+    /* 子要素の配置基準 */
+    isolation: isolate;
+    /* z-index: -1 を確実に機能させる */
+
+    .page-container {
+        @apply p-10 bg-[#fafdf5] justify-items-center text-gray-900 min-h-screen;
+    }
+
+    .page-header {
+        @apply mb-5 m-0 text-xl text-center font-bold text-gray-900;
+    }
+
+    .form-container {
+        @apply gap-2 bg-white p-6 rounded-lg shadow-sm max-w-lg w-full;
+    }
+
+    .form-group {
+        @apply flex flex-col gap-1;
+    }
+
+    .form-label {
+        @apply font-bold mt-3;
+    }
+
+    .input-field {
+        @apply flex-1 p-2 rounded-lg border border-gray-400 bg-white;
+    }
+
+    .btn-submit {
+        @apply p-2 bg-blue-600 text-white cursor-pointer no-underline text-inherit inline-block rounded-lg hover:bg-blue-700;
+    }
+
+    .btn-simple {
+        @apply p-2 bg-blue-600 text-white cursor-pointer no-underline inline-block rounded-lg hover:bg-blue-700;
+    }
+
+    .back-link {
+        @apply px-6 bg-emerald-700 hover:bg-emerald-800;
+        /* 移動系：深緑色 */
+    }
+
+    .error-msg {
+        @apply text-red-500 text-sm;
+    }
+
+    .btn-container {
+        @apply mt-2 flex justify-end;
+    }
+
+    /* ▼【★ここを書き換える：画像・位置・サイズを自由に設定してください】 */
+    /* 他の画面やフッターの設定と混ざらないよう、必ず親クラス（例：.p-users-create）の中に書いてください */
+    .p-image-area {
+        position: absolute;
+        /* 絶対配置 */
+        z-index: -1;
+        /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+        pointer-events: none;
+        /* 画像がクリックの邪魔をしないようにする */
+        mix-blend-mode: multiply;
+        /* 画像の白い背景を透明化して馴染ませる */
+
+        /* 1. 画像： public/images/page/ の中にある画像の名前を書いてください */
+        /* 例: url('../../../../public/images/page/book_stack_outline.png') */
+        background-image: url('');
+
+        /* 2. 位置：画面の端（右下の角）からの距離を指定します（0に近づけるほど端に寄ります） */
+        bottom: 20px;
+        /* 下からの距離 */
+        right: 20px;
+        /* 右からの距離 */
+
+        /* 3. サイズ：画像の大きさを指定します */
+        width: 300px;
+        /* 横幅 */
+        height: 150px;
+        /* 高さ */
+
+        /* 4. 濃さ：0.1（すごく薄い）〜 1.0（くっきり）の間で調整してください */
+        opacity: 1.0;
+
+        /* ▲【★書き換えエリアはここまで】 */
+
+        /* 位置のリセット：フッターなどの他画面の設定に邪魔されないための自動設定 */
+        left: auto;
+        margin: 0;
+
+        background-size: contain;
+        /* 画像全体を収める */
+        background-position: center;
+        /* 枠のど真ん中に表示 */
+        background-repeat: no-repeat;
+    }
+
+    /* ▲追加 260221 */
+}

@@ -1,0 +1,164 @@
+/* 貸出履歴一覧 (Loan History Index) */
+/* ▼修正前 260220 各セレクタに .p-loan-history-index を個別記述していた
+.p-loan-history-index .page-container { ... }
+.p-loan-history-index .page-header { ... }
+... (多数)
+▲修正前 260220 */
+/* ▼修正後 260220 ネスト構文にまとめて統一 */
+.p-loan-history-index {
+    position: relative;
+    /* 子要素の配置基準 */
+    isolation: isolate;
+    /* z-index: -1 を確実に機能させる */
+
+
+    .page-container {
+        @apply p-10 text-gray-900 min-h-screen;
+    }
+
+    /* ▼修正 20260220 タイトルを中央寄せに変更：元ソース */
+    /* .page-header { @apply flex justify-between items-center mb-6;} */
+    /* .page-title { @apply text-2xl font-bold text-gray-800 m-0;} */
+    .page-header {
+        @apply flex justify-center items-center mb-6;
+    }
+
+    .page-title {
+        @apply m-0 text-2xl text-gray-900 font-bold text-center mb-5;
+    }
+
+    /* ▲修正 20260220 */
+
+    .filter-area {
+        @apply mb-6 p-4 bg-gray-50 border border-gray-200 rounded-lg flex flex-wrap items-center gap-4;
+    }
+
+    .filter-group {
+        @apply flex items-center gap-2;
+    }
+
+    .filter-label {
+        @apply font-bold text-gray-700;
+    }
+
+    .filter-input {
+        @apply px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none;
+    }
+
+    .table-wrapper {
+        @apply w-full overflow-x-auto bg-white shadow rounded-lg;
+    }
+
+    .data-table {
+        @apply w-full border-collapse min-w-full;
+
+        thead tr {
+            @apply bg-blue-50;
+        }
+
+        th,
+        td {
+            @apply p-2 border border-gray-400 whitespace-nowrap;
+        }
+
+        th {
+            @apply bg-gray-300 text-gray-900 text-center;
+
+            &.sortable {
+                @apply cursor-pointer hover:bg-gray-200 transition-colors select-none;
+            }
+
+            &.searchable-th {
+                color: #2563eb !important;
+            }
+        }
+
+        td {
+            @apply text-base text-gray-900 bg-white text-center;
+        }
+
+
+    }
+
+    .pagelink {
+        @apply text-purple-600 underline;
+    }
+
+    .status-badge {
+        @apply px-2 py-1 rounded-full text-xs font-semibold;
+    }
+
+    /* ステータスごとの色分けが必要な場合はここで定義 */
+    /* 例: .status-badge.borrowed { @apply bg-yellow-100 text-yellow-800; } */
+
+    .link-simple {
+        @apply text-blue-600 hover:text-blue-800 hover:underline transition-colors;
+    }
+
+    .empty-message {
+        @apply text-center py-8 text-gray-500 text-base;
+    }
+
+    .col-title,
+    .col-author,
+    .col-category,
+    .col-publisher {
+        @apply !text-left;
+    }
+
+    .pagination-area {
+        position: absolute;
+        /* 絶対配置 */
+        z-index: -1;
+        /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+        pointer-events: none;
+    }
+
+    /* ▼【★ここを書き換える：画像・位置・サイズを自由に設定してください】 */
+    /* 他の画面やフッターの設定と混ざらないよう、必ず親クラス（例：.p-loan-history-index）の中に書いてください */
+    .p-image-area {
+        position: absolute;
+        /* 絶対配置 */
+        z-index: -1;
+        /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+        pointer-events: none;
+        /* 画像がクリックの邪魔をしないようにする */
+        mix-blend-mode: multiply;
+        /* 画像の白い背景を透明化して馴染ませる */
+
+        /* 1. 画像： public/images/page/ の中にある画像の名前を書いてください */
+        /* 例: url('../../../../public/images/page/book_stack_outline.png') */
+        background-image: url('');
+
+        /* 2. 位置：画面の端（右下の角）からの距離を指定します（0に近づけるほど端に寄ります） */
+        bottom: 20px;
+        /* 下からの距離 */
+        right: 20px;
+        /* 右からの距離 */
+
+        /* 3. サイズ：画像の大きさを指定します */
+        width: 300px;
+        /* 横幅 */
+        height: 150px;
+        /* 高さ */
+
+        /* 4. 濃さ：0.1（すごく薄い）〜 1.0（くっきり）の間で調整してください */
+        opacity: 1.0;
+
+        /* ▲【★書き換えエリアはここまで】 */
+
+        /* 位置のリセット：フッターなどの他画面の設定に邪魔されないための自動設定 */
+        left: auto;
+        margin: 0;
+
+        background-size: contain;
+        /* 画像全体を収める */
+        background-position: center;
+        /* 枠のど真ん中に表示 */
+        background-repeat: no-repeat;
+    }
+
+    /* ▲追加 260221 */
+}
+
+/* ▲修正後 260220 */

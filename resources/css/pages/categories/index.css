@@ -1,0 +1,135 @@
+.p-categories-index {
+    /* ▼修正 260225 他の画面と同様、表示領域からフッター高を引いて計算(強制適用) */
+    height: calc(100vh - 65px) !important;
+    overflow-y: auto !important;
+    /* ▲修正 260225 */
+    position: relative;
+    /* 子要素の配置基準 */
+    isolation: isolate;
+    /* z-index: -1 を確実に機能させる */
+
+    .bg-page {
+        @apply bg-[#fafdf5] min-h-screen;
+    }
+
+    .page-container {
+        @apply p-10 text-gray-900;
+    }
+
+    .left {
+        @apply w-1/8;
+    }
+
+    .page-header {
+        @apply mb-5 flex items-center justify-between max-w-2xl mx-auto;
+
+        .left {
+            @apply flex-1;
+        }
+
+        /* 修正 260224 : ボタンが広がらないようflex-1を削除し、右側の余白のみを確保 */
+        .header-btn-area {
+            @apply flex-1 flex justify-end;
+        }
+    }
+
+    .page-title {
+        @apply m-0 text-2xl text-gray-900 font-bold text-center flex-[2];
+    }
+
+    .table-wrapper {
+        @apply max-w-2xl mx-auto;
+    }
+
+    .data-table {
+        @apply w-full table-fixed border-collapse border border-gray-300 text-gray-900;
+    }
+
+    .data-table thead tr {
+        @apply bg-gray-50;
+    }
+
+    .data-table th,
+    .data-table td {
+        @apply border border-gray-400 p-2;
+    }
+
+    .data-table th {
+        @apply text-center bg-gray-300 w-20;
+    }
+
+    .data-table td {
+        @apply text-center bg-white;
+    }
+
+    .data-table .center {
+        @apply text-center max-w-5;
+    }
+
+    /* ▼追加 260225 */
+    .admin-link {
+        @apply text-purple-600 underline;
+    }
+
+    /* ▲追加 260225 */
+
+    .pagelink {
+        @apply text-purple-600 underline;
+    }
+
+    .col-category {
+        @apply !text-left;
+    }
+
+    .btn-simple {
+        @apply p-2 bg-blue-600 text-white cursor-pointer no-underline text-inherit inline-block rounded-lg hover:bg-blue-700;
+    }
+
+    .btn-small {
+        @apply p-1 bg-white text-black text-sm hover:bg-white;
+    }
+
+    /* ▼【★ここを書き換える：画像・位置・サイズを自由に設定してください】 */
+    /* 他の画面やフッターの設定と混ざらないよう、必ず親クラス（例：.p-categories-index）の中に書いてください */
+    .p-image-area {
+        position: absolute;
+        /* 絶対配置 */
+        z-index: -1;
+        /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+        pointer-events: none;
+        /* 画像がクリックの邪魔をしないようにする */
+        mix-blend-mode: multiply;
+        /* 画像の白い背景を透明化して馴染ませる */
+
+        /* 1. 画像： public/images/page/ の中にある画像の名前を書いてください */
+        /* 例: url('../../../../public/images/page/book_index_bg.png') */
+        background-image: url('');
+
+        /* 2. 位置：画面の端（右下の角）からの距離を指定します（0に近づけるほど端に寄ります） */
+        bottom: 20px;
+        /* 下からの距離 */
+        right: 20px;
+        /* 右からの距離 */
+
+        /* 3. サイズ：画像の大きさを指定します */
+        width: 200px;
+        /* 横幅 */
+        height: 100px;
+        /* 高さ */
+
+        /* 4. 濃さ：0.1（すごく薄い）〜 1.0（くっきり）の間で調整してください */
+        opacity: 1.0;
+
+        /* ▲【★書き換えエリアはここまで】 */
+
+        /* 位置のリセット：フッターなどの他画面の設定に邪魔されないための自動設定 */
+        left: auto;
+        margin: 0;
+
+        background-size: contain;
+        /* 画像全体を収める */
+        background-position: center;
+        /* 枠のど真ん中に表示 */
+        background-repeat: no-repeat;
+    }
+}

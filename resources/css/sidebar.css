@@ -1,0 +1,181 @@
+/* サイドバー用CSS */
+/*.p-sidebar ネスト構文にまとめて統一 */
+/* サイドバー枠の中だけを狙い撃ちして大きくする */
+[data-flux-sidebar] {
+    /* 幅の固定 */
+    width: 20rem !important;
+    min-width: 20rem !important;
+    max-width: 20rem !important;
+
+    /* 画面高さ不足時のスクロール対策 */
+    height: 100vh !important;
+    overflow-y: auto !important;
+
+    &,
+    & * {
+        font-size: 1.15rem !important;
+    }
+
+    /*さらに微調整縮小 */
+    [data-flux-sidebar-brand] div,
+    [data-flux-sidebar-brand] span {
+        font-size: 1.3rem !important;
+        font-weight: 800 !important;
+        line-height: 1.2 !important;
+    }
+
+    /*  ロゴ縮小に合わせて調整 */
+    & .logo-top,
+    &[data-flux-sidebar] .logo-top,
+    .p-sidebar .logo-top,
+    [data-flux-brand] .logo-top {
+        font-size: 1.1rem !important;
+        font-weight: normal !important;
+        vertical-align: super !important;
+        margin-left: 4px !important;
+        opacity: 0.8 !important;
+        display: inline-block !important;
+    }
+
+    /* ロゴ画像が切れないように調整 */
+    [data-flux-sidebar-brand] {
+        overflow: visible !important;
+
+        min-height: 4rem !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* ロゴ画像を包むFlux内部のdivの制限を解除 */
+    [data-flux-sidebar-brand] div {
+        height: auto !important;
+        width: auto !important;
+        overflow: visible !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        /* 中央寄せ追加 */
+        text-align: center !important;
+    }
+
+    [data-flux-sidebar-brand] img.logo-icon {
+        height: 2.2rem !important;
+        /* 文字より少し大きいくらいに調整 */
+        width: auto !important;
+        object-fit: contain !important;
+        flex-shrink: 0 !important;
+        margin: 0 !important;
+        /* 余計なマージンを排除 */
+    }
+
+    /* メニュー全体のナビゲーション領域を中央寄せ */
+    [data-flux-sidebar-nav] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    /* メニュー項目を強調 */
+    .sidebar-link,
+    [data-flux-sidebar-item] {
+        /* 行間を詰める */
+        @apply py-1 px-4 rounded-xl;
+
+        width: 90% !important;
+        /* 中央寄せしつつ少し幅を確保 */
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+
+        font-size: 1.4rem !important;
+        font-weight: 800 !important;
+
+        &:hover {
+            @apply bg-zinc-200 dark:bg-zinc-700;
+        }
+
+        /* アイテム内部のテキスト領域（背景色などが付く部分）を中央寄せ */
+        & > div,
+        & > a {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+        }
+    }
+
+    /* セクション見出し（管理者・利用者の両方に適用） */
+    .sidebar-group-title,
+    h2.sidebar-group-title {
+        @apply text-center mt-1 mb-2 border-b-4 border-zinc-400 pb-2;
+
+        width: 80% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        /*  一段階縮小 */
+        font-size: 1.2rem !important;
+        font-weight: 900 !important;
+        color: #1a202c !important;
+        display: block !important;
+    }
+
+    /* 各メニュー項目の上下に余白を作る（詰めすぎを解消） */
+    [data-flux-sidebar-item] {
+        margin-top: 2px !important;
+        margin-bottom: 2px !important;
+    }
+
+    /* 各グループ間の余白を調整 */
+    .sidebar-group,
+    [data-flux-sidebar-group] {
+        @apply my-1;
+
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+
+        font-size: 1.4rem !important;
+
+        .sidebar-heading-text-black {
+            color: #555 !important;
+            opacity: 1 !important;
+            font-weight: 900 !important;
+        }
+    }
+}
+
+/* ▼ ワンポイント画像（背景・透かし）の設定：*/
+.p-image-area {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+
+    background-image: url("");
+
+    /* 配置：4パターンのいずれかになるよう、上下・左右をひとつずつ選ぶ（計2個） */
+    /* 例: [右下] bottom/right, [左上] top/left, [右上] top/right, [左下] bottom/left */
+    bottom: 20px;
+    right: 20px;
+    /* top: 20px; */
+    /* left: 20px; */
+
+    /* サイズ調整 */
+    width: 200px;
+    height: 100px;
+
+    /* 濃さ：通常は 1.0。文字の裏などで薄くしたい場合は 0.4 前後に調整 */
+    opacity: 1;
+    /* ▲ 調整可能エリア */
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

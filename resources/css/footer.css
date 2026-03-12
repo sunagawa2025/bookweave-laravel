@@ -1,0 +1,81 @@
+.p-footer {
+    @apply py-6 bg-gray-100 border-t border-gray-200 text-center text-sm text-gray-900 w-full;
+    position: relative;
+    /* 子要素(p-image-area)の絶対配置の基準にする */
+    overflow: hidden;
+    /* はみ出した画像をカット */
+    isolation: isolate;
+    /* 画像を確実にテキストの背後に送るための設定 */
+}
+
+.p-footer .footer-content {
+    @apply max-w-7xl mx-auto px-4;
+    position: relative;
+    /* 画像より前面に表示するために必要 */
+    z-index: 1;
+    /* 画像(z-index:0)より上に配置 */
+}
+
+/* ▼ ワンポイント画像（背景・透かし）の設定：260221ベース型枠（最新版） */
+/* 他の画面の設定と混ざらないよう、必ず親クラス（.p-footer）の中に書いてください */
+/* ※フッターは特殊な中央配置レイアウトを採用しているため、配置設定の変更にはご注意ください */
+.p-image-area {
+    @apply flex justify-center items-center overflow-hidden mx-auto mb-2;
+    position: absolute;
+    /* 絶対配置 */
+    z-index: -1;
+    /* メニューの背後に配置（※親要素に isolation: isolate が必要） */
+    pointer-events: none;
+    /* 画像が文字の操作を邪魔しないようにする */
+    mix-blend-mode: multiply;
+    /* 画像の白い背景を透明化して馴染ませる（必要に応じて） */
+
+    /* ▼【★ここを書き換える：画像・位置・サイズを自由に設定してください】 */
+
+    /* 1. 画像： public/images/ の中の画像ファイルを指定します */
+    background-image: url("/images/library.jpg");
+
+    /* 2. 位置：テキストの背景として中央に配置する設定です */
+    top: 70%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: translateY(calc(-50% + 15px));
+    /* 縦方向の微調整 */
+
+    /* 3. サイズ：画像の大きさを指定します */
+    width: 300px;
+    /* 横幅 */
+    height: 100px;
+    /* 高さ */
+    border-radius: 4px;
+
+    /* 4. 濃さ：0.1（すごく薄い）〜 1.0（くっきり）の間で調整してください */
+    opacity: 0.4;
+
+    /* ▲【★書き換えエリアはここまで】 */
+
+    background-size: cover;
+    /* コンテナ全体を埋める（余白ゼロ） */
+    background-position: center;
+    /* 中央を基準に配置 */
+    background-repeat: no-repeat;
+
+    /* 中の画像(img)がある場合の設定 */
+    .footer-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+/* ▲追加 260221 */
+
+.company-name {
+    @apply font-bold text-gray-700 mb-1 block;
+}
+
+.company-info {
+    @apply flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 text-xs;
+}

@@ -1,0 +1,180 @@
+.p-books-stocks {
+    /* ▼修正 260225 他の画面と同様、表示領域からフッター高を引いて計算(強制適用) */
+    height: calc(100vh - 120px) !important;
+    overflow-y: auto !important;
+    /* ▲修正 260225 */
+    position: relative;
+    isolation: isolate;
+
+    .bg-page {
+        @apply bg-[#fafdf5];
+    }
+
+    /* ▼修正後 20260223 : 余白を図書一覧画面(p-10等)と合わせる */
+    .page-container {
+        @apply p-10 text-gray-900;
+    }
+
+    /* ▲修正後 20260223 */
+
+    /* ▼修正後 20260223 : 貸出・返却画面のメイン幅(max-w-3xl)に合わせる */
+    .book-info-header,
+    .search-area,
+    .table-wrapper,
+    .pagination-area,
+    .footer-action,
+    /* タイトル周りの幅・配置を統一 */
+    .page-header {
+        @apply max-w-3xl mx-auto;
+    }
+
+    /* ▲修正後 20260223 */
+
+    .page-header {
+        /* ▼修正後 20260223: タイトルを中央寄せ */
+        @apply mb-5 flex items-center justify-center;
+        /* ▲修正後 20260223 */
+    }
+
+    .page-title {
+        /* ▼修正後 20260223: 文字を中央寄せ */
+        @apply m-0 text-2xl text-gray-900 font-bold text-center;
+        /* ▲修正後 20260223 */
+    }
+
+    /* ▲追加 20260223 */
+
+    /* 本の基本情報エリア */
+    .book-info-header {
+        @apply mb-6 p-4 border border-gray-300 rounded-lg shadow-sm bg-white;
+    }
+
+    /* ▲修正後 20260223 */
+
+    .book-info-grid {
+        @apply grid grid-cols-2 gap-4;
+    }
+
+    .book-info-item {
+        @apply text-base text-gray-700;
+    }
+
+    .label-text {
+        @apply font-bold text-gray-900 mr-2;
+    }
+
+    .value-text {
+        @apply text-gray-800;
+    }
+
+    /* ▼追加 20260223 : 貸出可能冊数を目立たせる */
+    .available-count-item {
+        @apply text-red-700;
+        /* 深い赤色で区別 */
+
+        .label-text,
+        .value-text {
+            @apply text-red-700;
+        }
+    }
+
+    /* ▲追加 20260223 */
+
+    /* 検索エリア */
+    .search-area {
+        @apply mb-3;
+    }
+
+    .search-form {
+        @apply flex gap-2 w-full max-w-[600px] rounded-lg;
+    }
+
+    .input-field {
+        @apply flex-1 p-2 rounded-lg border border-gray-400 bg-white focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-400;
+    }
+
+    /* ▼追加 260223 : 貸出画面の幅指定と統一 */
+    .search-input {
+        width: 70% !important;
+        flex: none !important;
+    }
+
+    /* ▲追加 260223 */
+
+    /* テーブル */
+    .table-wrapper {
+        @apply w-full overflow-x-auto;
+    }
+
+    .data-table {
+        @apply mt-3 w-full border-collapse border border-gray-300;
+    }
+
+    .data-table thead tr {
+        @apply bg-blue-50;
+    }
+
+    .data-table th,
+    .data-table td {
+        @apply border border-gray-400 p-2 text-gray-900;
+    }
+
+    .data-table th {
+        @apply text-center bg-gray-300 font-bold;
+
+        &.searchable-th {
+            color: #2563eb !important;
+        }
+    }
+
+    .data-table td {
+        @apply text-center bg-white;
+    }
+
+    .col-mgmt-id {
+        /* ▼修正前 */
+        /* @apply text-left; */
+        /* width: 180px !important; */
+        /* ▲修正前 */
+        /* ▼修正後 20260223 */
+        @apply text-left;
+        width: 50% !important;
+        /* ▲修正後 20260223 */
+    }
+
+    .col-status {
+        /* ▼修正後 20260223 */
+        @apply text-center font-bold;
+        width: 50% !important;
+        /* ▲修正後 20260223 */
+    }
+
+    .empty-message {
+        @apply p-8 text-gray-500 italic;
+    }
+
+    /* ページネーション */
+    .pagination-area {
+        @apply mt-5;
+    }
+
+    /* フッターアクション */
+    .footer-action {
+        @apply mt-6;
+    }
+
+    .btn-simple {
+        @apply p-2 bg-blue-600 text-white cursor-pointer no-underline inline-block rounded-lg hover:bg-blue-700;
+    }
+
+    .back-link {
+        /* ▼修正前 */
+        /* @apply px-6; */
+        /* ▲修正前 */
+
+        /* ▼修正後 260223 */
+        @apply px-6 bg-emerald-700 hover:bg-emerald-800;
+        /* 移動系：深緑色 */
+        /* ▲修正後 260223 */
+    }
+}
